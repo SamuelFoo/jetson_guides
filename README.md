@@ -138,7 +138,7 @@ tar xf kernel_oot_modules_src.tbz2
 tar xf nvidia_kernel_display_driver_source.tbz2
 ```
 
-**Take note of `..` after `Linux_for_Tegra`** in the first line.
+**Take note of `..` after `Linux_for_Tegra/`** in the first line.
 
 #### Install Pre-requisites
 
