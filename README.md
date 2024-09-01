@@ -259,3 +259,5 @@ cp nvidia-oot/device-tree/platform/generic-dts/dtbs/* \
 #### Flash the Developer Kit
 
 https://docs.nvidia.com/jetson/archives/r36.3/DeveloperGuide/IN/QuickStart.html#to-flash-the-jetson-developer-kit-operating-software
+
+Start from step 3.
