@@ -1,6 +1,16 @@
 # Jetson Setup
 
+On first boot, always do a `sudo apt update && sudo apt upgrade`.
+
 ## JTOP
+
+If `pip` is not installed, run
+
+```
+sudo apt install python3-pip
+```
+
+To install `jetson-stats` (the command `jtop`):
 
 ```
 sudo pip3 install jetson-stats
