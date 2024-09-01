@@ -1,3 +1,13 @@
+# Jetson Setup
+
+## JTOP
+
+```
+sudo pip3 install jetson-stats
+```
+
+`sudo` is needed for `jetson-stats` to access system information. After installing, reboot the device. After reboot. running `jtop` will give live device information.
+
 # Issues
 
 ## 1. Nvidia L4T Kernel Updates on the Seeed Studio J401 Carrier Board
