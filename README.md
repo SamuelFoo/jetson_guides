@@ -205,6 +205,7 @@ After editing the Kernel Configuration, make sure to save the changes by running
 
 ```
 make ARCH=arm64 savedefconfig
+cp ./defconfig ./arch/arm64/configs
 ```
 
 #### Build Kernel, OOT and DTBs
