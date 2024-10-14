@@ -201,6 +201,12 @@ make ARCH=arm64 menuconfig
 
 At this point, the Kernel Configuration Menu will appear. To see which settings need to be adjusted, see https://www.kernelconfig.io/index.html or press `/` to search.
 
+After editing the Kernel Configuration, make sure to save the changes by running (in the same directory):
+
+```
+make ARCH=arm64 savedefconfig
+```
+
 #### Build Kernel, OOT and DTBs
 
 **NOTE: if at any time you change the terminal instance, re-set the environment variables below**
