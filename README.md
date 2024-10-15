@@ -272,3 +272,23 @@ Start from step 3.
 The flash may fail once or twice. Simply power off the device, unplug the power and the USB-C connection, plug back the power, turn the device on, reconnect the USB-C and then try to flash again. To avoid complications, please follow the steps **in order**.
 
 If you see the error "No such device: /sys/class/net/usb0", or the flash failing due to the host laptop being unable to establish a SSH connection to the Jetson (e.g. the flash being stuck at "Waiting for device to expose ssh..."), **terminate all network-related processes and applications**. This can include, but are not limited to, tailscale, Wifi, radio antennas etc. One can do this by doing `sudo nmcli radio wifi off` (to revert this **after the flash**, do `sudo nmcli radio wifi on`) and `sudo ifconfig <network_name> down` (to revert this, do `sudo ifconfig <network_name> up`).
+
+## 3. USB WiFi dongle not recognised
+
+Same as [## 2. USB Modem not recognised as USB Connection](##-2.-USB-Modem-not-recognised-as-USB-Connection), we recompile the kernel with device-specific configs.
+
+The following were used for *TP-Link TL-WN727N*:
+
+```
+<Insert configs here>
+```
+
+Furthermore, as of 15 Oct 2024, the `rtl8xxxu` kernel module bundled with Jetson Linux 36.3 does not contain mappings for some devices. To check, run `lsusb` and note the vendor and product IDs of your device. For example, in
+
+```
+<Insert lsusb output here>
+```
+
+`2357` is the vendor ID and `0101c` is the product ID. 
+
+Check that `Linux_for_Tegra/source/kernel/kernel-jammy-src/drivers/net/wireless/realtek/rtl8xxxu/rtl8xxxu_core.c` has an interface defined for your device under `static const struct usb_device_id dev_table[]`. If an interface is not defined for your device, you will need to recompile the kernel module. Clone the repository https://github.com/SamuelFoo/rtl8xxxu and replace `Linux_for_Tegra/source/kernel/kernel-jammy-src/drivers/net/wireless/realtek/rtl8xxxu`. Remove the `.git` folder and then continue from [#### Build Kernel, OOT and DTBs](####-Build-Kernel,-OOT-and-DTBs). (You should build the kernel module using the Jetson Linux toolchain, not your host computer's `make`.)
