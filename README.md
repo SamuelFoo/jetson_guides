@@ -1,3 +1,19 @@
+- [Jetson Setup](#jetson-setup)
+  - [JTOP](#jtop)
+- [Issues](#issues)
+  - [1. Nvidia L4T Kernel Updates on the Seeed Studio J401 Carrier Board](#1-nvidia-l4t-kernel-updates-on-the-seeed-studio-j401-carrier-board)
+  - [2. USB Modem not recognised as USB Connection](#2-usb-modem-not-recognised-as-usb-connection)
+    - [Problem](#problem)
+    - [Quick Links](#quick-links)
+    - [Diagnosis](#diagnosis)
+    - [Fix](#fix)
+      - [Download and extract files](#download-and-extract-files)
+      - [Install Pre-requisites](#install-pre-requisites)
+      - [Change Kernel Configuration](#change-kernel-configuration)
+      - [Build Kernel, OOT and DTBs](#build-kernel-oot-and-dtbs)
+      - [Flash the Developer Kit](#flash-the-developer-kit)
+  - [3. USB WiFi dongle not recognised](#3-usb-wifi-dongle-not-recognised)
+
 # Jetson Setup
 
 On first boot, always do a `sudo apt update && sudo apt upgrade`.
@@ -277,18 +293,44 @@ If you see the error "No such device: /sys/class/net/usb0", or the flash failing
 
 Same as [## 2. USB Modem not recognised as USB Connection](##-2.-USB-Modem-not-recognised-as-USB-Connection), we recompile the kernel with device-specific configs.
 
-The following were used for *TP-Link TL-WN727N*:
+The following were used for _TP-Link TL-WN727N_ (**NOTE: This is meant to be an exhaustive list, not a minimal one.** If you care about kernel bloat, feel free to test for the minimally required set of configs.):
 
 ```
-<Insert configs here>
+CONFIG_BT_RTL=m
+CONFIG_BT_HCIBTUSB_RTL=y
+CONFIG_USB_RTL8150=m
+CONFIG_USB_RTL8152=m
+CONFIG_USB_RTL8153_ECM=m
+CONFIG_RTL8180=m
+CONFIG_RTL8187=m
+CONFIG_RTL8187_LEDS=y
+CONFIG_RTL_CARDS=m
+CONFIG_RTL8192CE=m
+CONFIG_RTL8192SE=m
+CONFIG_RTL8192DE=m
+CONFIG_RTL8723AE=m
+CONFIG_RTL8723BE=m
+CONFIG_RTL8188EE=m
+CONFIG_RTL8192EE=m
+CONFIG_RTL8821AE=m
+CONFIG_RTL8192CU=m
+CONFIG_RTLWIFI=m
+CONFIG_RTLWIFI_PCI=m
+CONFIG_RTLWIFI_USB=m
+CONFIG_RTLWIFI_DEBUG=y
+CONFIG_RTL8192C_COMMON=m
+CONFIG_RTL8723_COMMON=m
+CONFIG_RTLBTCOEXIST=m
+CONFIG_RTL8XXXU=m
+CONFIG_RTL8XXXU_UNTESTED=y
 ```
 
 Furthermore, as of 15 Oct 2024, the `rtl8xxxu` kernel module bundled with Jetson Linux 36.3 does not contain mappings for some devices. To check, run `lsusb` and note the vendor and product IDs of your device. For example, in
 
 ```
-<Insert lsusb output here>
+Bus 001 Device 005: ID 2357:010c TP-Link TL-WN722N v2/v3 [Realtek RTL8188EUS]
 ```
 
-`2357` is the vendor ID and `0101c` is the product ID. 
+`2357` is the vendor ID and `0101c` is the product ID.
 
-Check that `Linux_for_Tegra/source/kernel/kernel-jammy-src/drivers/net/wireless/realtek/rtl8xxxu/rtl8xxxu_core.c` has an interface defined for your device under `static const struct usb_device_id dev_table[]`. If an interface is not defined for your device, you will need to recompile the kernel module. Clone the repository https://github.com/SamuelFoo/rtl8xxxu and replace `Linux_for_Tegra/source/kernel/kernel-jammy-src/drivers/net/wireless/realtek/rtl8xxxu`. Remove the `.git` folder and then continue from [#### Build Kernel, OOT and DTBs](####-Build-Kernel,-OOT-and-DTBs). (You should build the kernel module using the Jetson Linux toolchain, not your host computer's `make`.)
+Check that `Linux_for_Tegra/source/kernel/kernel-jammy-src/drivers/net/wireless/realtek/rtl8xxxu/rtl8xxxu_core.c` has an interface defined for your device under `static const struct usb_device_id dev_table[]`. If an interface is not defined for your device, you will need to patch the kernel module. Clone the repository https://github.com/SamuelFoo/rtl8xxxu and replace `Linux_for_Tegra/source/kernel/kernel-jammy-src/drivers/net/wireless/realtek/rtl8xxxu`. Remove the `.git` folder and then continue from [#### Build Kernel, OOT and DTBs](####-Build-Kernel,-OOT-and-DTBs). (You should build the kernel module using the Jetson Linux toolchain, not your host computer's `make`.)
