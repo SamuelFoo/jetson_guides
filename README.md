@@ -44,11 +44,11 @@ Put `nvidia-l4t-kernel` and related `apt` packages on hold:
 sudo apt-mark hold nvidia-l4t-kernel
 ```
 
-Support may change later on, but as of 25 Jun 2024, the L4T kernel on the official nvidia repo (`repo.download.nvidia.com/jetson/common r36.3/main`) does not support the J401.
+Support may change later on, but as of 25 Jun 2024, the L4T kernel on the official nvidia repo (`repo.download.nvidia.com/jetson/common r36.4/main`) does not support the J401.
 
 ## 2. USB Modem not recognised as USB Connection
 
-This is due to the Jetpack 6.0 L4T Kernel including the necesary USB network configs / modules. Fix is the recompile the Linux kernel with the neccessary configs.
+This is due to the Jetpack 6.1 L4T Kernel including the necesary USB network configs / modules. Fix is the recompile the Linux kernel with the neccessary configs.
 
 ### Problem
 
@@ -60,10 +60,10 @@ Forum Discussion:
 https://forums.developer.nvidia.com/t/jetson-orin-nano-usb-tethering-not-working-jetpack-6/295108
 
 Kernel Customisation Documentation:
-https://docs.nvidia.com/jetson/archives/r36.3/DeveloperGuide/SD/Kernel/KernelCustomization.html
+https://docs.nvidia.com/jetson/archives/r36.4/DeveloperGuide/SD/Kernel/KernelCustomization.html
 
 Guide to get kernel and filesystem sources and flashing:
-https://docs.nvidia.com/jetson/archives/r36.3/DeveloperGuide/IN/QuickStart.html#preparing-a-jetson-developer-kit-for-use
+https://docs.nvidia.com/jetson/archives/r36.4/DeveloperGuide/IN/QuickStart.html#preparing-a-jetson-developer-kit-for-use
 
 ### Diagnosis
 
@@ -126,12 +126,12 @@ CONFIG_USB_NET2280=m
 
 #### Download and extract files
 
-You need to download BSP, sample rootfs, kernel source from the Jetson Linux developer page (e.g. https://developer.nvidia.com/embedded/jetson-linux-r363 for Jetson Linux v36.3, Jetpack 6.0)
+You need to download BSP, sample rootfs, kernel source from the Jetson Linux developer page (e.g. https://developer.nvidia.com/embedded/jetson-linux-r363 for Jetson Linux v36.4, Jetpack 6.1)
 
-Three files in total, links for Jetson Linux v36.3, Jetpack 6.0 are pasted below:
+Three files in total, links for Jetson Linux v36.4, Jetpack 6.1 are pasted below:
 
-https://developer.nvidia.com/downloads/embedded/l4t/r36_release_v3.0/release/jetson_linux_r36.3.0_aarch64.tbz2
-https://developer.nvidia.com/downloads/embedded/l4t/r36_release_v3.0/release/tegra_linux_sample-root-filesystem_r36.3.0_aarch64.tbz2
+https://developer.nvidia.com/downloads/embedded/l4t/r36_release_v3.0/release/jetson_linux_r36.4.0_aarch64.tbz2
+https://developer.nvidia.com/downloads/embedded/l4t/r36_release_v3.0/release/tegra_linux_sample-root-filesystem_r36.4.0_aarch64.tbz2
 https://developer.nvidia.com/downloads/embedded/l4t/r36_release_v3.0/sources/public_sources.tbz2
 
 Download all files in the same directory (e.g. `~/flash_jetson`). This will be the `L4T_INSTALL_PATH`. You can set this as an environment variable, for example:
@@ -146,11 +146,11 @@ Set the following environment variables:
 2. `${SAMPLE_FS_PACKAGE}` contains the name of the sample file system package: `Tegra_Linux_Sample-Root-Filesystem_<version>_aarch64.tbz2`.
 3. `${BOARD}` contains the name of a supported configuration of Jetson module and the carrier board. Common values for this field can be found in the Configuration column in the Jetson Modules and Configurations table.
 
-E.g. for flashing Jetpack 6.0 for the Orin NX / Orin Nano developer kit:
+E.g. for flashing Jetpack 6.1 for the Orin NX / Orin Nano developer kit:
 
 ```
-export L4T_RELEASE_PACKAGE=Jetson_Linux_R36.3.0_aarch64.tbz2
-export SAMPLE_FS_PACKAGE=Tegra_Linux_Sample-Root-Filesystem_R36.3.0_aarch64.tbz2
+export L4T_RELEASE_PACKAGE=Jetson_Linux_R36.4.0_aarch64.tbz2
+export SAMPLE_FS_PACKAGE=Tegra_Linux_Sample-Root-Filesystem_R36.4.0_aarch64.tbz2
 export BOARD=jetson-orin-nano-devkit
 ```
 
@@ -196,7 +196,7 @@ sudo apt install build-essential bc
 
 3. Jetson Linux Toolchain
 
-https://docs.nvidia.com/jetson/archives/r36.3/DeveloperGuide/AT/JetsonLinuxToolchain.html#at-jetsonlinuxtoolchain
+https://docs.nvidia.com/jetson/archives/r36.4/DeveloperGuide/AT/JetsonLinuxToolchain.html#at-jetsonlinuxtoolchain
 
 4. Other C++ Tools
 
@@ -232,8 +232,8 @@ cp ./defconfig ./arch/arm64/configs
 
 ```
 export L4T_INSTALL_PATH=$HOME/flash_jetson
-export L4T_RELEASE_PACKAGE=jetson_linux_r36.3.0_aarch64.tbz2
-export SAMPLE_FS_PACKAGE=tegra_linux_sample-root-filesystem_r36.3.0_aarch64.tbz2
+export L4T_RELEASE_PACKAGE=jetson_linux_r36.4.0_aarch64.tbz2
+export SAMPLE_FS_PACKAGE=tegra_linux_sample-root-filesystem_r36.4.0_aarch64.tbz2
 export BOARD=jetson-orin-nano-devkit
 export CROSS_COMPILE=$HOME/l4t-gcc/aarch64--glibc--stable-2022.08-1/bin/aarch64-buildroot-linux-gnu-
 ```
@@ -283,7 +283,7 @@ cp nvidia-oot/device-tree/platform/generic-dts/dtbs/* \
 
 #### Flash the Developer Kit
 
-https://docs.nvidia.com/jetson/archives/r36.3/DeveloperGuide/IN/QuickStart.html#to-flash-the-jetson-developer-kit-operating-software
+https://docs.nvidia.com/jetson/archives/r36.4/DeveloperGuide/IN/QuickStart.html#to-flash-the-jetson-developer-kit-operating-software
 
 Start from step 3.
 
@@ -327,7 +327,7 @@ CONFIG_RTL8XXXU=m
 CONFIG_RTL8XXXU_UNTESTED=y
 ```
 
-Furthermore, as of 15 Oct 2024, the `rtl8xxxu` kernel module bundled with Jetson Linux 36.3 does not contain mappings for some devices. To check, run `lsusb` and note the vendor and product IDs of your device. For example, in
+Furthermore, as of 15 Oct 2024, the `rtl8xxxu` kernel module bundled with Jetson Linux 36.4 does not contain mappings for some devices. To check, run `lsusb` and note the vendor and product IDs of your device. For example, in
 
 ```
 Bus 001 Device 005: ID 2357:010c TP-Link TL-WN722N v2/v3 [Realtek RTL8188EUS]
