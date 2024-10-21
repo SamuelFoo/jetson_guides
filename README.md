@@ -130,9 +130,9 @@ You need to download BSP, sample rootfs, kernel source from the Jetson Linux dev
 
 Three files in total, links for Jetson Linux v36.4, Jetpack 6.1 are pasted below:
 
-https://developer.nvidia.com/downloads/embedded/l4t/r36_release_v3.0/release/jetson_linux_r36.4.0_aarch64.tbz2
-https://developer.nvidia.com/downloads/embedded/l4t/r36_release_v3.0/release/tegra_linux_sample-root-filesystem_r36.4.0_aarch64.tbz2
-https://developer.nvidia.com/downloads/embedded/l4t/r36_release_v3.0/sources/public_sources.tbz2
+https://developer.nvidia.com/downloads/embedded/l4t/r36_release_v4.0/release/jetson_linux_r36.4.0_aarch64.tbz2
+https://developer.nvidia.com/downloads/embedded/l4t/r36_release_v4.0/release/tegra_linux_sample-root-filesystem_r36.4.0_aarch64.tbz2
+https://developer.nvidia.com/downloads/embedded/l4t/r36_release_v4.0/sources/public_sources.tbz2
 
 Download all files in the same directory (e.g. `~/flash_jetson`). This will be the `L4T_INSTALL_PATH`. You can set this as an environment variable, for example:
 
