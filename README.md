@@ -126,7 +126,7 @@ CONFIG_USB_NET2280=m
 
 #### Download and extract files
 
-You need to download BSP, sample rootfs, kernel source from the Jetson Linux developer page (e.g. https://developer.nvidia.com/embedded/jetson-linux-r364 for Jetson Linux v36.4, Jetpack 6.1)
+You need to download BSP, sample rootfs, kernel source from the Jetson Linux developer page (e.g. https://developer.nvidia.com/embedded/jetson-linux for Jetson Linux v36.4, Jetpack 6.1)
 
 Three files in total, links for Jetson Linux v36.4, Jetpack 6.1 are pasted below:
 
