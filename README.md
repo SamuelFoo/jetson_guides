@@ -277,8 +277,8 @@ cd ${L4T_INSTALL_PATH}/Linux_for_Tegra/source
 export KERNEL_HEADERS=$PWD/kernel/kernel-jammy-src
 make dtbs
 
-cp nvidia-oot/device-tree/platform/generic-dts/dtbs/* \
-  ${L4T_INSTALL_PATH}/Linux_for_Tegra/kernel/dtb/
+# Changed since v36.4 
+cp kernel-devicetree/generic-dts/dtbs/* ${L4T_INSTALL_PATH}/Linux_for_Tegra/kernel/dtb/
 ```
 
 #### Flash the Developer Kit
