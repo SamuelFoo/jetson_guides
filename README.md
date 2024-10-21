@@ -253,6 +253,18 @@ cp kernel/kernel-jammy-src/arch/arm64/boot/Image \
   ${L4T_INSTALL_PATH}/Linux_for_Tegra/kernel/Image
 ```
 
+If you see the error:
+
+```
+fatal error: openssl/opensslv.h: No such file or directory
+```
+
+after `make -C kernel`, run
+
+```
+sudo apt-get install libssl-dev
+```
+
 2. Build the NVIDIA Out-of-Tree Modules
 
 ```
