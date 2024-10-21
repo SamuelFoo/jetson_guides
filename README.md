@@ -157,6 +157,7 @@ export BOARD=jetson-orin-nano-devkit
 Extract and prepare the binary files:
 
 ```
+cd ${L4T_INSTALL_PATH}
 tar xf ${L4T_RELEASE_PACKAGE}
 sudo tar xpf ${SAMPLE_FS_PACKAGE} -C Linux_for_Tegra/rootfs/
 cd Linux_for_Tegra/
@@ -167,6 +168,7 @@ sudo ./apply_binaries.sh
 Extract the kernel source:
 
 ```
+cd ${L4T_INSTALL_PATH}
 tar xf public_sources.tbz2 -C ${L4T_INSTALL_PATH}/Linux_for_Tegra/..
 cd ${L4T_INSTALL_PATH}/Linux_for_Tegra/source
 tar xf kernel_src.tbz2
