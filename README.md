@@ -149,8 +149,8 @@ Set the following environment variables:
 E.g. for flashing Jetpack 6.0 for the Orin NX / Orin Nano developer kit:
 
 ```
-export L4T_RELEASE_PACKAGE=jetson_linux_r36.3.0_aarch64.tbz2
-export SAMPLE_FS_PACKAGE=tegra_linux_sample-root-filesystem_r36.3.0_aarch64.tbz2
+export L4T_RELEASE_PACKAGE=Jetson_Linux_R36.3.0_aarch64.tbz2
+export SAMPLE_FS_PACKAGE=Tegra_Linux_Sample-Root-Filesystem_R36.3.0_aarch64.tbz2
 export BOARD=jetson-orin-nano-devkit
 ```
 
