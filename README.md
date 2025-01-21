@@ -36,6 +36,8 @@ sudo pip3 install jetson-stats
 
 # Issues
 
+**IMPORTANT: OTA firmware updates may break the fixes listed below. This means don't do `sudo apt update && sudo apt upgrade` blindly.**
+
 ## 1. Nvidia L4T Kernel Updates on the Seeed Studio J401 Carrier Board
 
 Put `nvidia-l4t-kernel` and related `apt` packages on hold:
